@@ -1,27 +1,9 @@
-h1 {
-    text-align: center;
+.jumbotron {
+    color: black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-p {
-    text-align: center;
-    font-size: large;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-body {
-    background-color: lightcoral;
-}
-
-.start-btn {
-    background-color: black;
-    color: white;
-    padding: 20px 20px;
-    border-radius: 5px;
-}
-
-.hide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 35px;
+.clock {
+    float: right;
+    margin-right: 15px;
 }

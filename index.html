@@ -6,16 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Coding Quiz</title>
     <link href = 'style.css' rel = 'stylesheet'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src = 'script.js'></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Code Quiz Challenge</h1>
-    <p>Ready to test your knowledge of coding and see how you rank against your competitors?!</p>
-    <div class = 'container'>
-        <div id = 'question-cont' class = 'hide'>
-            <div id = 'question'></div>
-        <button id = 'start' class = 'start-btn'>Start</button>
-    </div>
-    
+    <nav class='clock' id='stop-watch'>Time: </nav>
+    <div class="jumbotron">
+        <h1 class="display-4">Coding Quiz</h1>
+        <p class="lead">Test your knowledge against previous contestants in this Quiz!</p>
+        <hr class="my-4">
+        <p id='question-cont'>Press the Start button to begin.</p>
+        <button class="btn btn-primary btn-lg" id='startBtn' role="button">Start</button>
+        <span id = 'choices'></span>
+      </div>
+
 </body>
-<script src = 'script.js'></script>
+
 </html>

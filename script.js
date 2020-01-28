@@ -2,6 +2,8 @@ $(document).ready(function() {
     var score = 0;
     var stopWatch = 75;
     var currentQuestion;
+    var userGuess;
+
     var questions = [
         {
             question: 'Commonly used data types DO NOT include:',
@@ -51,18 +53,26 @@ $(document).ready(function() {
         for(var i = 0; i < currentQuestion.choices.length; i++) {
             var choiceBtn = $('<button>');
             choiceBtn.addClass('btn btn-primary btn-lg');
-            choiceBtn.css('margin', '15px')
+            choiceBtn.addClass('options')
+            choiceBtn.css('margin', '15px');
             choiceBtn.text(currentQuestion.choices[i]);
             $('#choices').append(choiceBtn);
+            if(questions[i].choices.indexOf(0) === 0) {
+                choiceBtn.id('btnOne')
+            } else if(questions[i].choices.indexOf(1) === 1) {
+                choiceBtn.id('btnTwo');
+            } else if(questions[i].choices.indexOf(2) === 2) {
+                choiceBtn.id('btnThree');
+            } else if(questions[i].choices.indexOf(3) === 3) {
+                choiceBtn.id('btnFour');
+            };
         };
     };
 
     function selectAnswer() {
-        if(answer === questions[currentQuestion].answer) {
-            $('#pTag').innerHTML('Correct!');
-        } else {
-            $('#pTag').innerHTML('Wrong');
-        };
+        $('.options').on('click', function() {
+            console.log('Clicked');
+        })
     };
 
     function startGame() {

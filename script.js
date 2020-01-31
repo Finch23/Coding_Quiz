@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var score = 0;
     var stopWatch = 75;
-    var shuffledQuestion;
+    var currentIndex = 0;
 
     var questions = [
         {
@@ -44,17 +44,9 @@ $(document).ready(function() {
         }, 1000);
     };
 
-    function randQuestion() {
-        currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+    function Question() {
+        currentQuestion = questions[currentIndex];
         $('#question-cont').text(currentQuestion.question);
-    };
-
-    function nextQuestion() {
-        shuffledQuestion = parseInt(currentQuestion.question) - .5;
-        $('#question-cont').text(shuffledQuestion);
-    };
-
-    function generateChoices() {
         for(var i = 0; i < currentQuestion.choices.length; i++) {
             var choiceBtn = $('<button>');
             choiceBtn.addClass('btn btn-primary btn-lg');
@@ -63,11 +55,11 @@ $(document).ready(function() {
             choiceBtn.text(currentQuestion.choices[i]);
             $('#choices').append(choiceBtn);
             $('#counter').text('Score: ' + score)
-        };
-    };
+        }
+    }
 
-    function selectAnswer() {
-        $('.options').on('click', function() {
+        $(document).on('click', '.options', function() {
+            console.log(currentIndex);
             if($(this).text() === currentQuestion.answer) {
                 score++;
                 $('#counter').text('Score: ' + score);
@@ -75,19 +67,20 @@ $(document).ready(function() {
                 score--;
                 $('#counter').text('Score: ' + score);
             };
-            nextQuestion();
+            $('#choices').empty();
+            currentIndex++;
+            Question();
+            if(currentIndex == 4) {
+                alert('Game Over! Score: ' + score + '/5');
+            };
         });
-    };
 
-    function startGame() {
         $('#startBtn').on('click', function() {
-            randQuestion();
-            generateChoices();
-            selectAnswer();
+            Question();
             timer();
         });
-    };
 
 
-    startGame();
+
+    
 });

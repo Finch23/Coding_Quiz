@@ -1,8 +1,7 @@
 $(document).ready(function() {
     var score = 0;
     var stopWatch = 75;
-    var currentQuestion;
-    var userGuess;
+    var shuffledQuestion;
 
     var questions = [
         {
@@ -33,20 +32,26 @@ $(document).ready(function() {
     ];
 
     function timer() {
+        $('#stop-watch').text(stopWatch);
+
             setInterval(function() {
             stopWatch--;
-            $('#stop-watch').innerHTML(stopWatch);
-            $('#stop-watch').append(stopWatch);
-            
-            if(stopWatch === 0) {
+            $('#stop-watch').text(stopWatch);
+            if(stopWatch == 0) {
+                clearInterval();
                 alert('Times Up!');
             };
-        });
+        }, 1000);
     };
 
     function randQuestion() {
         currentQuestion = questions[Math.floor(Math.random() * questions.length)];
         $('#question-cont').text(currentQuestion.question);
+    };
+
+    function nextQuestion() {
+        shuffledQuestion = parseInt(currentQuestion.question) - .5;
+        $('#question-cont').text(shuffledQuestion);
     };
 
     function generateChoices() {
@@ -57,22 +62,21 @@ $(document).ready(function() {
             choiceBtn.css('margin', '15px');
             choiceBtn.text(currentQuestion.choices[i]);
             $('#choices').append(choiceBtn);
-            if(questions[i].choices.indexOf(0) === 0) {
-                choiceBtn.id('btnOne')
-            } else if(questions[i].choices.indexOf(1) === 1) {
-                choiceBtn.id('btnTwo');
-            } else if(questions[i].choices.indexOf(2) === 2) {
-                choiceBtn.id('btnThree');
-            } else if(questions[i].choices.indexOf(3) === 3) {
-                choiceBtn.id('btnFour');
-            };
+            $('#counter').text('Score: ' + score)
         };
     };
 
     function selectAnswer() {
         $('.options').on('click', function() {
-            console.log('Clicked');
-        })
+            if($(this).text() === currentQuestion.answer) {
+                score++;
+                $('#counter').text('Score: ' + score);
+            } else {
+                score--;
+                $('#counter').text('Score: ' + score);
+            };
+            nextQuestion();
+        });
     };
 
     function startGame() {
@@ -80,6 +84,7 @@ $(document).ready(function() {
             randQuestion();
             generateChoices();
             selectAnswer();
+            timer();
         });
     };
 

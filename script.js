@@ -42,6 +42,9 @@ $(document).ready(function() {
                 alert('Times Up!');
             };
         }, 1000);
+        if(currentIndex == 4) {
+            clearInterval();
+        };
     };
 
     function Question() {
@@ -49,7 +52,7 @@ $(document).ready(function() {
         $('#question-cont').text(currentQuestion.question);
         for(var i = 0; i < currentQuestion.choices.length; i++) {
             var choiceBtn = $('<button>');
-            choiceBtn.addClass('btn btn-primary btn-lg');
+            choiceBtn.addClass('btn btn-secondary btn-lg');
             choiceBtn.addClass('options')
             choiceBtn.css('margin', '15px');
             choiceBtn.text(currentQuestion.choices[i]);
@@ -71,11 +74,15 @@ $(document).ready(function() {
             currentIndex++;
             Question();
             if(currentIndex == 4) {
-                alert('Game Over! Score: ' + score + '/5');
+                newDiv = $('<div>');
+                newDiv.text = ('Your score is ' + score + '/5');
+                $('#question-cont').append(newDiv);
             };
         });
 
         $('#startBtn').on('click', function() {
+            $('#startBtn').css('display', 'none');
+            $('#pTag').css('display', 'none');
             Question();
             timer();
         });

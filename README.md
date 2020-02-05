@@ -8,3 +8,5 @@
 <h4>Screen Shots</h4>
 
 <img src ='/images/screenshot.PNG'>
+<hr>
+<img src ='/images/screenshot1.PNG'>

@@ -2,6 +2,7 @@ $(document).ready(function() {
     var score = 0;
     var stopWatch = 75;
     var currentIndex = 0;
+    var timerId;
 
     var questions = [
         {
@@ -32,12 +33,12 @@ $(document).ready(function() {
     ];
 
     function timer() {
-        setInterval(function() {
+        timerId = setInterval(function() {
         stopWatch--;
         $('#stop-watch').text(stopWatch);
         if(stopWatch <= 0) {
-            stopInterval();
-            alert('Times Up!');
+            clearInterval(timerId);
+            gameOver();
         };
     }, 1000);
     };
@@ -56,30 +57,36 @@ $(document).ready(function() {
         }
     }
 
-        $(document).on('click', '.options', function() {
-            console.log(currentIndex);
-            if($(this).text() === currentQuestion.answer) {
-                score++;
-                $('#counter').text('Score: ' + score);
-            } else {
-                $('#counter').text('Score: ' + score);
-            };
-            $('#choices').empty();
-            currentIndex++;
-            Question();
-            if(currentIndex == 4) {
-                newDiv = $('<div>');
-                newDiv.text = ('Your score is ' + score + '/5');
-                $('#question-cont').append(newDiv);
-            };
-        });
+    function gameOver() {
+            $('#question-cont').text('Game over! Score: ' + score + '/5');
+            clearInterval(timerId);
+    }
 
-        $('#startBtn').on('click', function() {
-            $('#startBtn').css('display', 'none');
-            $('#pTag').css('display', 'none');
-            Question();
-            timer();
-        });
+
+    $(document).on('click', '.options', function() {
+        console.log(currentIndex);
+        if(currentIndex === 4) {
+            gameOver();
+        }
+        if($(this).text() === currentQuestion.answer) {
+            score++;
+            $('#counter').text('Score: ' + score);
+        } else {
+            stopWatch -= 15;
+            $('#counter').text('Score: ' + score);
+        };
+        $('#choices').empty();
+        currentIndex++;
+        Question();
+    });
+
+    $('#startBtn').on('click', function() {
+        $('#startBtn').css('display', 'none');
+        $('#pTag').css('display', 'none');
+        Question();
+        timer();
+    });
+
 
 
 

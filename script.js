@@ -32,19 +32,14 @@ $(document).ready(function() {
     ];
 
     function timer() {
+        setInterval(function() {
+        stopWatch--;
         $('#stop-watch').text(stopWatch);
-
-            setInterval(function() {
-            stopWatch--;
-            $('#stop-watch').text(stopWatch);
-            if(stopWatch == 0) {
-                clearInterval();
-                alert('Times Up!');
-            };
-        }, 1000);
-        if(currentIndex == 4) {
-            clearInterval();
+        if(stopWatch <= 0) {
+            stopInterval();
+            alert('Times Up!');
         };
+    }, 1000);
     };
 
     function Question() {
@@ -52,7 +47,7 @@ $(document).ready(function() {
         $('#question-cont').text(currentQuestion.question);
         for(var i = 0; i < currentQuestion.choices.length; i++) {
             var choiceBtn = $('<button>');
-            choiceBtn.addClass('btn btn-secondary btn-lg');
+            choiceBtn.addClass('btn btn-success btn-lg');
             choiceBtn.addClass('options')
             choiceBtn.css('margin', '15px');
             choiceBtn.text(currentQuestion.choices[i]);
@@ -67,7 +62,6 @@ $(document).ready(function() {
                 score++;
                 $('#counter').text('Score: ' + score);
             } else {
-                score--;
                 $('#counter').text('Score: ' + score);
             };
             $('#choices').empty();

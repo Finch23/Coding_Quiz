@@ -58,8 +58,16 @@ $(document).ready(function() {
     }
 
     function gameOver() {
-            $('#question-cont').text('Game over! Score: ' + score + '/5');
-            clearInterval(timerId);
+        $('#question-cont').text('Game over! Score: ' + score + '/5');
+        clearInterval(timerId);
+        reset()
+    }
+
+    function reset() {
+        $('#reset').css('display', 'block')
+        $(document).on('click', '#reset', function() {
+            location.reload();
+        })
     }
 
 
@@ -72,6 +80,7 @@ $(document).ready(function() {
             score++;
             $('#counter').text('Score: ' + score);
         } else {
+            score--
             stopWatch -= 15;
             $('#counter').text('Score: ' + score);
         };

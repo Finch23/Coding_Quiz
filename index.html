@@ -11,13 +11,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <nav class='clock' id='stop-watch'>Time: </nav>
-    <div class="jumbotron" style="background-color: darkgrey;">
+    <nav class='clock' id='stop-watch' style='font-size: 2rem;'>Time: </nav>
+    <div class="jumbotron" style="background-color: sandybrown;">
         <h1 class="display-4">Coding Quiz</h1>
         <p class="lead">Test your knowledge against previous contestants in this Quiz!</p>
         <hr class="my-4">
         <p id='pTag'>Press the Start button to begin.</p>
         <button class="btn btn-primary btn-lg" id='startBtn' role="button">Start</button>
+        <button class="btn btn-primary btn-lg" id='reset' role="button">Restart</button>
+
         <br>
         <div id='question-cont'></div>
         <span id = 'choices'></span>

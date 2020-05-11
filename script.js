@@ -48,7 +48,7 @@ $(document).ready(function() {
         $('#question-cont').text(currentQuestion.question);
         for(var i = 0; i < currentQuestion.choices.length; i++) {
             var choiceBtn = $('<button>');
-            choiceBtn.addClass('btn btn-success btn-lg');
+            choiceBtn.addClass('btn btn-info btn-lg');
             choiceBtn.addClass('options')
             choiceBtn.css('margin', '15px');
             choiceBtn.text(currentQuestion.choices[i]);
